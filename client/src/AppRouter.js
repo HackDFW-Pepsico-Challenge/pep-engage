@@ -3,6 +3,7 @@ import { BrowserRouter,Routes, Route } from 'react-router-dom'
 
 import BarChart from './BarChart';
 import SocialMedia from './SocialMedia';
+import Campaigns from './Campaigns';
 
 
 const data = [
@@ -47,6 +48,8 @@ function AppRouter()
           <Route path="" element={<BarChart data={data}/>} />
           <Route path="/home" element={<BarChart data={data}/>}/>
           <Route path="/socials" element={<SocialMedia/>}/>
+          <Route path="/campaigns" element={<Campaigns/>}/>
+
 
         </Routes>
         </BrowserRouter>

@@ -9,7 +9,7 @@ function App() {
       <nav class="navbar navbar-dark bg-primary">
       
       <div class="container">
-    <a className="navbar-brand" href="#">
+    <a className="navbar-brand" href="http://localhost:3000/home">
       <img src="pepsico_logo.png" alt="..." height="40"/>
       </a>
       <ul className="nav-list"><li> <a href="http://localhost:3000/home" className="text-light"> Home</a></li> 
