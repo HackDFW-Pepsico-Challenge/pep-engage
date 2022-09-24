@@ -3,3 +3,5 @@
 env
 pepsico-files
 node_modules
+__pycache__
+package-lock.json
