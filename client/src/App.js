@@ -16,14 +16,15 @@ function App() {
       <li>
       <a href="http://localhost:3000/socials" className="text-light"> Socials</a>
         </li>
-      
+<<<<<<< HEAD
+        <li>
+      <a href="http://localhost:3000/campaigns" className="text-light"> Campaigns</a>
+        </li>
+=======
+>>>>>>> b284d58 (Integrated Flask Data With FrontEnd)
       </ul>
- 
     </div>
-    
 </nav>
-      
-
      <AppRouter/> 
     </div>
   );

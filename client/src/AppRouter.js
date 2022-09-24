@@ -1,10 +1,10 @@
 import React from 'react'
+import {useEffect, useState} from 'react'
 import { BrowserRouter,Routes, Route } from 'react-router-dom'
-
+import axios from "axios";
 import BarChart from './BarChart';
 import SocialMedia from './SocialMedia';
 import Campaigns from './Campaigns';
-
 
 const data = [
     {year: 1980, efficiency: 24.3, sales: 8949000},
@@ -39,21 +39,18 @@ const data = [
     {year: 2017, efficiency: 39.4, sales: 6081000},
   ]
   
-
 function AppRouter()
-{
+{ 
     return (
-        <BrowserRouter>
-        <Routes>
-          <Route path="" element={<BarChart data={data}/>} />
-          <Route path="/home" element={<BarChart data={data}/>}/>
-          <Route path="/socials" element={<SocialMedia/>}/>
-          <Route path="/campaigns" element={<Campaigns/>}/>
-
-
-        </Routes>
-        </BrowserRouter>
-    )
+      <BrowserRouter>
+      <Routes>
+        <Route path="" element={<BarChart/>} />
+        <Route path="/home" element={<BarChart/>}/>
+        <Route path="/socials" element={<SocialMedia/>}/>
+        <Route path="/campaigns" element={<Campaigns/>}/>
+      </Routes>
+      </BrowserRouter>
+  )
 }
 
 export default AppRouter
