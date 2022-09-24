@@ -1,9 +1,18 @@
 import { useD3 } from './hooks/useD3';
+import axios from 'axios'
+import {useEffect, useState} from 'react';
 import React from 'react';
 import * as d3 from 'd3';
 
+function BarChart() {
+  const [data, setData] = useState([])
+  useEffect(() => {
+    axios.get('https://8fdf-153-33-34-17.ngrok.io/countySales')
+          .then(response => {
+            setData(response.data)
+          })
+  }, [])
 
-function BarChart({ data }) {
   const ref = useD3(
     (svg) => {
       const height = 500;
@@ -12,13 +21,13 @@ function BarChart({ data }) {
 
       const x = d3
         .scaleBand()
-        .domain(data.map((d) => d.year))
+        .domain(data.map((d) => d.BRAND))
         .rangeRound([margin.left, width - margin.right])
         .padding(0.1);
 
       const y1 = d3
         .scaleLinear()
-        .domain([0, d3.max(data, (d) => d.sales)])
+        .domain([0, d3.max(data, (d) => d.SALE_QUANTITY)])
         .rangeRound([height - margin.bottom, margin.top]);
 
       const xAxis = (g) =>
@@ -59,10 +68,10 @@ function BarChart({ data }) {
         .data(data)
         .join("rect")
         .attr("class", "bar")
-        .attr("x", (d) => x(d.year))
+        .attr("x", (d) => x(d.BRAND))
         .attr("width", x.bandwidth())
-        .attr("y", (d) => y1(d.sales))
-        .attr("height", (d) => y1(0) - y1(d.sales));
+        .attr("y", (d) => y1(d.SALE_QUANTITY))
+        .attr("height", (d) => y1(0) - y1(d.SALE_QUANTITY));
     },
     [data.length]
   );
@@ -77,8 +86,6 @@ function BarChart({ data }) {
         marginLeft: "0px",
       }}
     >
-        
-
       <g className="plot-area" />
       <g className="x-axis" />
       <g className="y-axis" />
