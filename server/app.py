@@ -44,8 +44,8 @@ def get_county_worst_product_sale():
     worst_sales_json = filtered_result.to_json(orient='records')
 
     # plot graph
-    data = filtered_result["COUNTY"].value_counts()
-    ax = data.plot(kind="pie", autopct='%1.1f%%', shadow=True, legend=True, title='Counties to Advertise', ylabel='', labeldistance=None)
+    pi_chart = filtered_result["COUNTY"].value_counts()
+    ax = pi_chart.plot(kind="pie", autopct='%1.1f%%', shadow=True, legend=True, title='Counties to Advertise', ylabel='', labeldistance=None)
     ax.legend(bbox_to_anchor=(1, 1.02), loc='upper left')
     fig.savefig('static/graph_two.png', dpi = fig.dpi)
 
