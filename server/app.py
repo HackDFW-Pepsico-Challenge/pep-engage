@@ -2,6 +2,8 @@ from flask import Flask, jsonify
 import pandas as pd
 import requests
 import os.path
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 app = Flask(__name__)
@@ -13,7 +15,6 @@ def check_delete(name):
     if file_exist:
         os.remove('static/'+name)
 
-
 @app.route("/health")
 def health():
     return {"health": "UP"}
@@ -24,15 +25,14 @@ def get_county_wise_total_sales():
     res = total_sales.sort_values(by='SALE_QUANTITY', ascending=False).head(10)
     total_sales_json = res.to_json(orient='records')
     check_delete('graph_one.png')
-    fig = plt.figure(figsize=(16,8))
 
     # Plot graph
     plt.bar(res["BRAND"], height=res['SALE_QUANTITY'])
     plt.title('Most Popular Pepsico Products')
     plt.xlabel("Sales (in Billion)")
     plt.ylabel("Pepsico Brands")
-    fig.savefig('graph_one.png', dpi = fig.dpi)
-    return total_sales_json
+    plt.savefig('static/graph_one.png')
+    return {"response":True}
 
 @app.route("/countyWorstProd", methods=['GET'])
 def get_county_worst_product_sale():
@@ -44,13 +44,12 @@ def get_county_worst_product_sale():
     worst_sales_json = filtered_result.to_json(orient='records')
 
     # plot graph
-    data = filtered_result["COUNTY"].value_counts()
-    ax = data.plot(kind="pie", autopct='%1.1f%%', shadow=True, legend=True, title='Counties to Advertise', ylabel='', labeldistance=None)
+    pi_chart = filtered_result["COUNTY"].value_counts()
+    ax = pi_chart.plot(kind="pie", autopct='%1.1f%%', shadow=True, legend=True, title='Counties to Advertise', ylabel='', labeldistance=None)
     ax.legend(bbox_to_anchor=(1, 1.02), loc='upper left')
-    fig.savefig('graph_two.png', dpi = fig.dpi)
+    plt.savefig('static/graph_two.png')
+    return {"response":True}
 
-    return worst_sales_json
-
-@app.route("/channelSales", method=['GET'])
+@app.route("/channelSales", methods=['GET'])
 def channel_sale():
     return {}
