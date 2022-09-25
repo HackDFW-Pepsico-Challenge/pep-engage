@@ -10,7 +10,8 @@ The following features are implemented:
 * [x] Analyze the main brands and their reach, potential engagement areas
 * [x] Identify nearby events that Pepsico can sponsor to engage with its consumers
 
-
+### App Walkthough GIF
+<img src="walkthrough.gif" width=250><br>
 
 
 ## License
