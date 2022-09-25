@@ -28,11 +28,13 @@ def get_county_wise_total_sales():
     
     # Plot graph
     fig = plt.figure(figsize=(16,8))
-    plt.bar(res["BRAND"], height=res['SALE_QUANTITY'])
+    plt.bar(res["BRAND"], height=res['SALE_QUANTITY'], color="blue")
     plt.title('Most Popular Pepsico Products')
     plt.xlabel("Sales (in Billion)")
     plt.ylabel("Pepsico Brands")
-    fig.savefig('static/graph_one.png', dpi=fig.dpi)
+    fig.autofmt_xdate()
+    plt.xticks(rotation=90)
+    fig.savefig('static/graph_one.png', dpi=fig.dpi, bbox_inches = "tight")
     return {"response":True}
 
 @app.route("/countyWorstProd", methods=['GET'])
