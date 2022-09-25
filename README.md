@@ -5,11 +5,10 @@
 ## User Stories
 The following features are implemented:
 
-* [ ] Pending
-* [ ] Pending
-* [ ] Pending
-* [ ] Pending
-* [ ] Pending
+* [x] Visualize 3D Prototype of NFT Collectibles for popular Pepsico brands
+* [x] Engage with consumers using social media interactions
+* [x] Analyze the main brands and their reach, potential engagement areas
+* [x] Identify nearby events that Pepsico can sponsor to engage with its consumers
 
 
 
