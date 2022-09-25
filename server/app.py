@@ -31,7 +31,7 @@ def get_county_wise_total_sales():
     plt.title('Most Popular Pepsico Products')
     plt.xlabel("Sales (in Billion)")
     plt.ylabel("Pepsico Brands")
-    fig.savefig('graph_one.png', dpi = fig.dpi)
+    fig.savefig('static/graph_one.png', dpi = fig.dpi)
     return total_sales_json
 
 @app.route("/countyWorstProd", methods=['GET'])
@@ -47,10 +47,10 @@ def get_county_worst_product_sale():
     data = filtered_result["COUNTY"].value_counts()
     ax = data.plot(kind="pie", autopct='%1.1f%%', shadow=True, legend=True, title='Counties to Advertise', ylabel='', labeldistance=None)
     ax.legend(bbox_to_anchor=(1, 1.02), loc='upper left')
-    fig.savefig('graph_two.png', dpi = fig.dpi)
+    fig.savefig('static/graph_two.png', dpi = fig.dpi)
 
     return worst_sales_json
 
-@app.route("/channelSales", method=['GET'])
+@app.route("/channelSales", methods=['GET'])
 def channel_sale():
     return {}
