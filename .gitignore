@@ -1,4 +1,5 @@
 #ignore csv files
+.DS_Store
 *.csv
 env
 pepsico-files

@@ -1,10 +1,17 @@
 from flask import Flask, jsonify
 import pandas as pd
 import requests
+import os.path
 
 app = Flask(__name__)
 
 data = pd.read_csv("pepsico-files/PEPSICO HACKDFW Dataset/PEP_HACKDFW_FINAL.csv")
+
+def check_delete(name):
+    file_exist = os.path.exists('static/'+name)
+    if file_exist:
+        os.remove('static/'+name)
+
 
 @app.route("/health")
 def health():
@@ -15,6 +22,7 @@ def get_county_wise_total_sales():
     total_sales = data.groupby('BRAND', as_index=False)['SALE_QUANTITY'].sum()
     res = total_sales.sort_values(by='SALE_QUANTITY', ascending=False).head(10)
     total_sales_json = res.to_json(orient='records')
+    check_delete('graph_one.png')
     return total_sales_json
 
 @app.route("/countyWorstProd", methods=['GET'])
@@ -23,5 +31,10 @@ def get_county_worst_product_sale():
     sort_worst_sales_in_county = total_sales_in_county.sort_values(by='SALE_QUANTITY')
     filtered_result = sort_worst_sales_in_county[(sort_worst_sales_in_county['SALE_QUANTITY'] >= 0)]
     filtered_result = filtered_result.head(10)
+    check_delete('graph_two.png')
     worst_sales_json = filtered_result.to_json(orient='records')
     return worst_sales_json
+
+@app.route("/channelSales", method=['GET'])
+def channel_sale():
+    return {}
