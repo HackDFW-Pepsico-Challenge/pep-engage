@@ -30,11 +30,12 @@ def get_county_wise_total_sales():
     fig = plt.figure(figsize=(16,8))
     plt.bar(res["BRAND"], height=res['SALE_QUANTITY'], color="blue")
     plt.title('Most Popular Pepsico Products')
-    plt.xlabel("Sales (in Billion)")
-    plt.ylabel("Pepsico Brands")
-    fig.autofmt_xdate()
-    plt.xticks(rotation=90)
-    fig.savefig('static/graph_one.png', dpi=fig.dpi, bbox_inches = "tight")
+    plt.ylabel("Sales (in Billion)")
+    plt.xlabel("Pepsico Brands")
+    # fig.autofmt_xdate()
+    # plt.xticks(rotation=90)
+    #bbox_inches = "tight"
+    fig.savefig('static/graph_one.png', dpi=fig.dpi)
     return {"response":True}
 
 @app.route("/countyWorstProd", methods=['GET'])
@@ -49,11 +50,20 @@ def get_county_worst_product_sale():
     # plot graph
     fig = plt.figure(figsize=(16,8))
     pi_chart = filtered_result["COUNTY"].value_counts()
-    ax = pi_chart.plot(kind="pie", autopct='%1.1f%%', shadow=True, legend=True, title='Counties to Advertise', ylabel='', labeldistance=None)
+    ax = pi_chart.plot(kind="pie", autopct='%1.1f%%', shadow=True, legend=True, title='Counties to Advertise', ylabel='Label', labeldistance=None)
     ax.legend(bbox_to_anchor=(1, 1.02), loc='upper left')
     fig.savefig('static/graph_two.png',dpi=fig.dpi)
     return {"response":True}
 
 @app.route("/channelSales", methods=['GET'])
 def channel_sale():
-    return {}
+    total_channel_sales = data.groupby(by=['TRADE_CHANNEL'], as_index = False)['SALE_QUANTITY'].sum()
+    check_delete('graph_three.png')
+    plt.figure(figsize=(16,8))
+    total_channel_sales.plot(kind = 'barh', x='TRADE_CHANNEL', y='SALE_QUANTITY')
+    plt.title('Sales For Channels A and B')
+    plt.ylabel('Channel')
+    plt.xlabel('Sales (in hundred Million)')
+    plt.savefig('static/graph_three.png')
+
+    return {"response": True}

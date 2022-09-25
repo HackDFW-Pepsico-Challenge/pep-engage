@@ -5,42 +5,50 @@ import React from 'react';
 import * as d3 from 'd3';
 
 function Graphs() {
-    const [images, setImages] = useState([])
-    let imageOne = 'http://127.0.0.1:5000/static/graph_one.png'
-    let imageTwo = 'http://127.0.0.1:5000/static/graph_two.png'
+    const [imageOne, setImageOne] = useState()
+    const [imageTwo, setImageTwo] = useState()
+    const [imageThree, setImageThree] = useState()
+    let testOutput = 'http://127.0.0.1:5000/static/output3.png'
     useEffect(() => {
       axios.get('http://127.0.0.1:5000/countySales')
             .then(response => {
-                console.log(response.data)
-                setImages(response.data)
+                //console.log(response)
+                setImageOne('http://127.0.0.1:5000/static/graph_one.png')
             })
             .catch((error) => {
                 console.log('error: ' + error);
-                this.setState({ requestFailed: true });
               });        
     }, [])
 
     useEffect(() => {
         axios.get('http://127.0.0.1:5000/countyWorstProd')
               .then(response => {
-                  console.log(response.data)
-                  setImages(response.data)
+                  setImageTwo('http://127.0.0.1:5000/static/graph_two.png')
               })
               .catch((error) => {
                   console.log('error: ' + error);
-                  this.setState({ requestFailed: true });
                 });        
       }, [])
 
+    useEffect(() => {
+    axios.get('http://127.0.0.1:5000/channelSales')
+            .then(response => {
+                console.log(response.data)
+                setImageThree('http://127.0.0.1:5000/static/graph_three.png')
+            })
+            .catch((error) => {
+                console.log('error: ' + error);
+            });        
+    }, [])
+
     return (
         <div>
-            <img src={imageOne} style={{"width": "30%"}}></img>
-            <img src={imageTwo} style={{"width": "30%"}}></img>
-            <img src={imageOne} style={{"width": "30%"}}></img>
-            <img src={imageTwo} style={{"width": "30%"}}></img>
+            <img src={imageOne} style={{"width": "60%"}}></img>
+            <img src={imageThree} style={{"width": "35%"}}></img>
+            <img src={imageTwo} style={{"width": "60%"}}></img>
+            {/* <img src={imageTwo} style={{"width": "50%"}}></img> */}
       </div>
     )
-
 }
 
 export default Graphs
