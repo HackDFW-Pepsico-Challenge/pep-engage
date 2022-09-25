@@ -16,12 +16,15 @@ function App() {
       <li>
       <a href="http://localhost:3000/socials" className="text-light"> Socials</a>
         </li>
-        <li>
+         <li>
       <a href="http://localhost:3000/campaigns" className="text-light"> Campaigns</a>
-        </li>
+        </li> 
+
       </ul>
     </div>
 </nav>
+
+
      <AppRouter/> 
     </div>
   );
