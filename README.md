@@ -11,7 +11,7 @@ The following features are implemented:
 * [x] Identify nearby events that Pepsico can sponsor to engage with its consumers
 
 ### App Walkthough GIF
-<img src="walkthrough.gif" width=250><br>
+<img src="walkthrough.gif" width=750><br>
 
 
 ## License
