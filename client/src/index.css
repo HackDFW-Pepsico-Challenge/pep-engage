@@ -15,3 +15,18 @@ code {
   width:8%;
   
 }
+.chester-logo{
+  height:300px;
+  width:auto;
+}
+.nav-list {
+list-style: none;
+}
+.active{
+  color:black;
+  cursor: pointer;
+}
+.inactive{
+  color:gray;
+  cursor: pointer;
+}

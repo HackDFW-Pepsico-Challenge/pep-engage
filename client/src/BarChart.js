@@ -7,7 +7,7 @@ import * as d3 from 'd3';
 function BarChart() {
   const [data, setData] = useState([])
   useEffect(() => {
-    axios.get('https://8fdf-153-33-34-17.ngrok.io/countySales')
+    axios.get('https://b61b-153-33-85-21.ngrok.io/countySales')
           .then(response => {
             setData(response.data)
           })
@@ -57,9 +57,23 @@ function BarChart() {
               .attr("text-anchor", "start")
               .text(data.y1)
           );
+        svg.append("text")
+        .attr("class", "x label")
+        .attr("text-anchor", "end")
+        .attr("x", width)
+        .attr("y", height - 6)
+        .text("Total Sales per product in the past financical year");  
+
+
+        
+        
+
+   
 
       svg.select(".x-axis").call(xAxis);
       svg.select(".y-axis").call(y1Axis);
+
+
 
       svg
         .select(".plot-area")
@@ -72,6 +86,7 @@ function BarChart() {
         .attr("width", x.bandwidth())
         .attr("y", (d) => y1(d.SALE_QUANTITY))
         .attr("height", (d) => y1(0) - y1(d.SALE_QUANTITY));
+        
     },
     [data.length]
   );
