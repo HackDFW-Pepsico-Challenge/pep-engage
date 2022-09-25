@@ -13,7 +13,6 @@ def check_delete(name):
     if file_exist:
         os.remove('static/'+name)
 
-
 @app.route("/health")
 def health():
     return {"health": "UP"}

@@ -7,7 +7,7 @@ import * as d3 from 'd3';
 function BarChart() {
   const [data, setData] = useState([])
   useEffect(() => {
-    axios.get('https://b61b-153-33-85-21.ngrok.io/countySales')
+    axios.get('https://250b-153-33-85-21.ngrok.io/countySales')
           .then(response => {
             setData(response.data)
           })
